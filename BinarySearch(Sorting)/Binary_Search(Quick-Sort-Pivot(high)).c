@@ -3,33 +3,26 @@
 #include <time.h>
 #include <sys/resource.h>
 
-// Quick Sort Partition 
+// Partition function 
 int partition(int arr[], int low, int high) {
-    int pivot = arr[low];
-    int i = low + 1;
-    int j = high;
+    int pivot = arr[high];
+    int i = low - 1;
 
-    while (1) {
-        while (i <= high && arr[i] <= pivot)
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
             i++;
-
-        while (arr[j] > pivot)
-            j--;
-
-        if (i >= j)
-            break;
-
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
     }
 
     // Place pivot in correct position
-    int temp = arr[low];
-    arr[low] = arr[j];
-    arr[j] = temp;
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
 
-    return j;
+    return i + 1;
 }
 
 // Quick Sort Function
@@ -73,14 +66,14 @@ int main() {
     for (int i = 0; i < n; i++)
         scanf("%d", &arr[i]);
 
-    // Sort using Quick Sort
+    // ⏱ Start CPU time
+    clock_t start = clock();
+    
+    // Sort using Quick Sort (pivot = high)
     quickSort(arr, 0, n - 1);
 
     printf("Enter element to search: ");
     scanf("%d", &key);
-
-    // ⏱ Start CPU time
-    clock_t start = clock();
 
     int result = binarySearch(arr, 0, n - 1, key);
 

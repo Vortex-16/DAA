@@ -3,34 +3,16 @@
 #include <time.h>
 #include <sys/resource.h>
 
-// Partition function 
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
-
-    for (int j = low; j < high; j++) {
-        if (arr[j] < pivot) {
-            i++;
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
+// Bubble Sort Function
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
         }
-    }
-
-    // Place pivot in correct position
-    int temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
-
-    return i + 1;
-}
-
-// Quick Sort Function
-void quickSort(int arr[], int low, int high) {
-    if (low < high) {
-        int p = partition(arr, low, high);
-        quickSort(arr, low, p - 1);
-        quickSort(arr, p + 1, high);
     }
 }
 
@@ -57,23 +39,18 @@ int main() {
 
     int *arr = (int *)malloc(n * sizeof(int));
 
-    if (arr == NULL) {
-        printf("Memory allocation failed\n");
-        return 1;
-    }
-
     printf("Enter elements:\n");
     for (int i = 0; i < n; i++)
         scanf("%d", &arr[i]);
+    
+    // ⏱ Start CPU time
+    clock_t start = clock();
 
-    // Sort using Quick Sort (pivot = high)
-    quickSort(arr, 0, n - 1);
+    // Sort before binary search
+    bubbleSort(arr, n);
 
     printf("Enter element to search: ");
     scanf("%d", &key);
-
-    // ⏱ Start CPU time
-    clock_t start = clock();
 
     int result = binarySearch(arr, 0, n - 1, key);
 
@@ -82,7 +59,7 @@ int main() {
 
     double cpu_time = ((double)(end - start)) / CLOCKS_PER_SEC;
 
-    // 📊 Memory usage
+    // Memory usage
     struct rusage usage;
     getrusage(RUSAGE_SELF, &usage);
 
