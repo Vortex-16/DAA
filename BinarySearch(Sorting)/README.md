@@ -49,45 +49,108 @@ The implementation is in [Binary_Search(Unsorted element).c](Binary_Search%28Uns
 
 ### Input And Output
 
-Example input:
+Run (n = 5)
 
 ```text
-5
-34 7 23 32 5
-23
+Enter number of elements: 5
+Enter elements:
+-10 -2 0 2 3
+Sorted elements:
+-10 -2 0 2 3
+Enter element to search: 3
+Element found at index 4
+CPU Time Used: 0.000052 seconds
+Memory Usage (Max Resident Set Size): 10080 KB
 ```
 
-Example output:
+Run (n = 10)
 
 ```text
-Element found at index 2
-CPU Time Used: ... seconds
-Memory Usage (Max Resident Set Size): ... KB
+Enter number of elements: 10
+Enter elements:
+-12 -11 -6 1 12 18 19 21 22 27
+Sorted elements:
+-12 -11 -6 1 12 18 19 21 22 27
+Enter element to search: 22
+Element found at index 8
+CPU Time Used: 0.000063 seconds
+Memory Usage (Max Resident Set Size): 10080 KB
+```
+
+Run (n = 15)
+
+```text
+Enter number of elements: 15
+Generated elements:
+0 1 7 0 3 4 0 8 5 5 0 8 3 0 0
+Sorted elements:
+0 0 0 0 0 0 1 3 3 4 5 5 7 8 8
+Enter element to search: 0
+Element found at index 3
+CPU Time Used: 0.000032 seconds
+Memory Usage (Max Resident Set Size): 9952 KB
+```
+
+Run (n = 100)
+
+```text
+Enter number of elements: 100
+Generated elements:
+0 9 4 4 1 1 6 5 4 4 4 6 6 5 1 7 5 2 0 9 ...
+Sorted elements:
+0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 2 ... 9 9 9 9 9 9 9 9 9 9
+Enter element to search: 4
+Element found at index 49
+CPU Time Used: 0.000063 seconds
+Memory Usage (Max Resident Set Size): 10080 KB
+```
+
+Run (n = 1000)
+
+```text
+Enter number of elements: 1000
+Generated elements:
+0 8 4 2 3 6 1 2 8 0 1 2 7 3 7 9 0 4 6 0 ...
+Sorted elements:
+0 0 0 0 0 0 0 0 0 0 ... 9 9 9 9 9 9 9 9
+Enter element to search: 9
+Element found at index 937
+CPU Time Used: 0.001548 seconds
+Memory Usage (Max Resident Set Size): 10080 KB
 ```
 
 ### CPU Time And Space Usage
 
-Bubble sort in this file uses the standard nested loops without an early-exit flag, so the sorting cost is always quadratic.
+Measured values from your current runs:
 
-| n | Bubble sort work | Binary search work | Total CPU proxy | Input array memory | Auxiliary space |
-|---|---:|---:|---:|---:|---:|
-| 1 | 0 | 1 | 1 | 4 bytes | O(1) |
-| 10 | 45 | 4 | 49 | 40 bytes | O(1) |
-| 100 | 4,950 | 7 | 4,957 | 400 bytes | O(1) |
-| 1,000 | 499,500 | 10 | 499,510 | 4,000 bytes | O(1) |
-| 10,000 | 49,995,000 | 14 | 49,995,014 | 40,000 bytes | O(1) |
-| 100,000 | 4,999,950,000 | 17 | 4,999,950,017 | 400,000 bytes | O(1) |
+| Array Size (n) | CPU Time (seconds) | Memory Usage (KB) |
+|---:|---:|---:|
+| 5 | 0.000052 | 10080 |
+| 10 | 0.000063 | 10080 |
+| 15 | 0.000032 | 9952 |
+| 100 | 0.000063 | 10080 |
+| 1000 | 0.001548 | 10080 |
 
-The linked C program reports the actual CPU time and RSS at runtime. The table above is a repeatable proxy based on comparison counts.
+Note: for small `n`, tiny timing differences are normal due to system noise and clock precision.
 
-### Graph: Time Versus Size
+### Graph: Array Size Versus CPU Time
 
 ```mermaid
 xychart-beta
-    title "Question 1: Bubble Sort + Binary Search"
-    x-axis ["1", "10", "100", "1000", "10000", "100000"]
-    y-axis "CPU proxy (comparisons)" 0 --> 5000000000
-    line [1, 49, 4957, 499510, 49995014, 4999950017]
+    title "Q1: Array Size vs CPU Time"
+    x-axis ["5", "10", "15", "100", "1000"]
+    y-axis "CPU Time (seconds)" 0 --> 0.0017
+    line [0.000052, 0.000063, 0.000032, 0.000063, 0.001548]
+```
+
+### Graph: Array Size Versus Memory Usage
+
+```mermaid
+xychart-beta
+    title "Q1: Array Size vs Memory Usage"
+    x-axis ["5", "10", "15", "100", "1000"]
+    y-axis "Memory (KB)" 9900 --> 10100
+    line [10080, 10080, 9952, 10080, 10080]
 ```
 
 ### Complexity Analysis

@@ -48,23 +48,28 @@ int main() {
         srand(time(0));
 
         // first random number
-        arr[0] = rand() % 10;
+        // arr[0] = rand() % 10;
 
         // generate sorted numbers directly
         for (int i = 1; i < n; i++) {
-            arr[i] = arr[i - 1] + (rand() % 10); // always increasing
+            arr[i] =rand() % 10;
         }
-        printf("Generated sorted elements:\n");
-        for (int i = 0; i < n; i++) {
-            printf("%d ", arr[i]);
-        }
-        printf("\n");
+        // printf("Generated elements:\n");
+        // for (int i = 0; i < n; i++) {
+        //     printf("%d ", arr[i]);
+        // }
+        // printf("\n");
     }
     // ⏱ Start CPU time
     clock_t start = clock();
 
     // Sort before binary search
     bubbleSort(arr, n);
+    printf("Sorted elements:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 
     printf("Enter element to search: ");
     scanf("%d", &key);
