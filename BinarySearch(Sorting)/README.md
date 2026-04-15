@@ -407,44 +407,51 @@ The implementation is in [Binary_Search(Merge Sort)).c](Binary_Search%28Merge%20
 
 ### Input And Output
 
-Example input:
+Run (n = 10)
 
 ```text
-5
-34 7 23 32 5
-23
+Enter number of elements: 10
+Enter elements:
+-12 -11 -6 1 12 18 19 21 22 27
+Enter element to search: 22
+Element found at index 8
+Merge Sort Time: 0.000003 seconds
+Binary Search Time: 0.000002 seconds
+Memory Usage (Max Resident Set Size): 10680 KB
 ```
 
-Example output:
-
-```text
-Element found at index 2
-Merge Sort Time: ... seconds
-Binary Search Time: ... seconds
-Memory Usage (Max Resident Set Size): ... KB
-```
+The measured table below uses runs with sizes 5, 10, 15, 100, and 1000.
 
 ### CPU Time And Space Usage
 
-Merge sort has deterministic divide-and-conquer work, and the binary search cost is tiny in comparison.
+Measured values (`Total CPU Time = Merge Sort Time + Binary Search Time`):
 
-| n | Merge sort work | Binary search work | Total CPU proxy | Input array memory | Auxiliary space |
-|---|---:|---:|---:|---:|---:|
-| 1 | 0 | 1 | 1 | 4 bytes | O(n) |
-| 10 | 34 | 4 | 38 | 40 bytes | O(n) |
-| 100 | 664 | 7 | 671 | 400 bytes | O(n) |
-| 1,000 | 9,966 | 10 | 9,976 | 4,000 bytes | O(n) |
-| 10,000 | 132,877 | 14 | 132,891 | 40,000 bytes | O(n) |
-| 100,000 | 1,660,964 | 17 | 1,660,981 | 400,000 bytes | O(n) |
+| Array Size (n) | Total CPU Time (seconds) | Memory Usage (KB) |
+|---:|---:|---:|
+| 5 | 0.000004 | 10676 |
+| 10 | 0.000004 | 10676 |
+| 15 | 0.000004 | 10676 |
+| 100 | 0.000014 | 10676 |
+| 1000 | 0.000111 | 10676 |
 
-### Graph: Time Versus Size
+### Graph: Array Size Versus CPU Time
 
 ```mermaid
 xychart-beta
-    title "Question 3: Merge Sort + Binary Search"
-    x-axis ["1", "10", "100", "1000", "10000", "100000"]
-    y-axis "CPU proxy (comparisons)" 0 --> 1700000
-    line [1, 38, 671, 9976, 132891, 1660981]
+    title "Q3: Array Size vs CPU Time"
+    x-axis ["5", "10", "15", "100", "1000"]
+    y-axis "CPU Time (seconds)" 0 --> 0.00012
+    line [0.000004, 0.000004, 0.000004, 0.000014, 0.000111]
+```
+
+### Graph: Array Size Versus Memory Usage
+
+```mermaid
+xychart-beta
+    title "Q3: Array Size vs Memory Usage"
+    x-axis ["5", "10", "15", "100", "1000"]
+    y-axis "Memory (KB)" 10650 --> 10700
+    line [10676, 10676, 10676, 10676, 10676]
 ```
 
 ### Complexity Analysis
@@ -511,43 +518,50 @@ The implementation is in [Binary_Search(Quick-Sort-Pivot(high)).c](Binary_Search
 
 ### Input And Output
 
-Example input:
+Run (n = 10)
 
 ```text
-5
-34 7 23 32 5
-23
+Enter number of elements: 10
+Enter elements:
+-12 -11 -6 1 12 18 19 21 22 27
+Enter element to search: 22
+Element found at index 8
+CPU Time Used: 0.000002 seconds
+Memory Usage (Max Resident Set Size): 10676 KB
 ```
 
-Example output:
-
-```text
-Element found at index 2
-CPU Time Used: ... seconds
-Memory Usage (Max Resident Set Size): ... KB
-```
+The measured table below uses runs with sizes 5, 10, 15, 100, and 1000.
 
 ### CPU Time And Space Usage
 
-For random input, quick sort is usually near `n log n`. For already sorted input, this pivot choice can degenerate to quadratic behavior.
+Measured values:
 
-| n | Average/best work | Worst-case work | Total CPU proxy, average/best | Total CPU proxy, worst | Input array memory | Auxiliary space |
-|---|---:|---:|---:|---:|---:|---:|
-| 1 | 0 | 0 | 1 | 1 | 4 bytes | O(log n) average, O(n) worst |
-| 10 | 34 | 45 | 38 | 49 | 40 bytes | O(log n) average, O(n) worst |
-| 100 | 664 | 4,950 | 671 | 4,957 | 400 bytes | O(log n) average, O(n) worst |
-| 1,000 | 9,966 | 499,500 | 9,976 | 499,510 | 4,000 bytes | O(log n) average, O(n) worst |
-| 10,000 | 132,877 | 49,995,000 | 132,891 | 49,995,014 | 40,000 bytes | O(log n) average, O(n) worst |
-| 100,000 | 1,660,964 | 4,999,950,000 | 1,660,981 | 4,999,950,017 | 400,000 bytes | O(log n) average, O(n) worst |
+| Array Size (n) | CPU Time (seconds) | Memory Usage (KB) |
+|---:|---:|---:|
+| 5 | 0.000002 | 10676 |
+| 10 | 0.000002 | 10676 |
+| 15 | 0.000003 | 10676 |
+| 100 | 0.000005 | 10676 |
+| 1000 | 0.000148 | 10676 |
 
-### Graph: Time Versus Size
+### Graph: Array Size Versus CPU Time
 
 ```mermaid
 xychart-beta
-    title "Question 4: Quick Sort Pivot High + Binary Search"
-    x-axis ["1", "10", "100", "1000", "10000", "100000"]
-    y-axis "CPU proxy (average/best)" 0 --> 1700000
-    line [1, 38, 671, 9976, 132891, 1660981]
+    title "Q4: Array Size vs CPU Time"
+    x-axis ["5", "10", "15", "100", "1000"]
+    y-axis "CPU Time (seconds)" 0 --> 0.00016
+    line [0.000002, 0.000002, 0.000003, 0.000005, 0.000148]
+```
+
+### Graph: Array Size Versus Memory Usage
+
+```mermaid
+xychart-beta
+    title "Q4: Array Size vs Memory Usage"
+    x-axis ["5", "10", "15", "100", "1000"]
+    y-axis "Memory (KB)" 10650 --> 10700
+    line [10676, 10676, 10676, 10676, 10676]
 ```
 
 ### Complexity Analysis
@@ -624,43 +638,50 @@ The implementation is in [Binary_Search(Quick-Sort-Pivot(Low)).c](Binary_Search%
 
 ### Input And Output
 
-Example input:
+Run (n = 10)
 
 ```text
-5
-34 7 23 32 5
-23
+Enter number of elements: 10
+Enter elements:
+-12 -11 -6 1 12 18 19 21 22 27
+Enter element to search: 22
+Element found at index 8
+CPU Time Used: 0.000002 seconds
+Memory Usage (Max Resident Set Size): 10676 KB
 ```
 
-Example output:
-
-```text
-Element found at index 2
-CPU Time Used: ... seconds
-Memory Usage (Max Resident Set Size): ... KB
-```
+The measured table below uses runs with sizes 5, 10, 15, 100, and 1000.
 
 ### CPU Time And Space Usage
 
-This version has the same asymptotic behavior as the pivot-high version. The difference is the input pattern that makes it degrade.
+Measured values:
 
-| n | Average/best work | Worst-case work | Total CPU proxy, average/best | Total CPU proxy, worst | Input array memory | Auxiliary space |
-|---|---:|---:|---:|---:|---:|---:|
-| 1 | 0 | 0 | 1 | 1 | 4 bytes | O(log n) average, O(n) worst |
-| 10 | 34 | 45 | 38 | 49 | 40 bytes | O(log n) average, O(n) worst |
-| 100 | 664 | 4,950 | 671 | 4,957 | 400 bytes | O(log n) average, O(n) worst |
-| 1,000 | 9,966 | 499,500 | 9,976 | 499,510 | 4,000 bytes | O(log n) average, O(n) worst |
-| 10,000 | 132,877 | 49,995,000 | 132,891 | 49,995,014 | 40,000 bytes | O(log n) average, O(n) worst |
-| 100,000 | 1,660,964 | 4,999,950,000 | 1,660,981 | 4,999,950,017 | 400,000 bytes | O(log n) average, O(n) worst |
+| Array Size (n) | CPU Time (seconds) | Memory Usage (KB) |
+|---:|---:|---:|
+| 5 | 0.000002 | 10676 |
+| 10 | 0.000002 | 10676 |
+| 15 | 0.000003 | 10676 |
+| 100 | 0.000006 | 10676 |
+| 1000 | 0.000076 | 10676 |
 
-### Graph: Time Versus Size
+### Graph: Array Size Versus CPU Time
 
 ```mermaid
 xychart-beta
-    title "Question 5: Quick Sort Pivot Low + Binary Search"
-    x-axis ["1", "10", "100", "1000", "10000", "100000"]
-    y-axis "CPU proxy (average/best)" 0 --> 1700000
-    line [1, 38, 671, 9976, 132891, 1660981]
+    title "Q5: Array Size vs CPU Time"
+    x-axis ["5", "10", "15", "100", "1000"]
+    y-axis "CPU Time (seconds)" 0 --> 0.00016
+    line [0.000002, 0.000002, 0.000003, 0.000006, 0.000076]
+```
+
+### Graph: Array Size Versus Memory Usage
+
+```mermaid
+xychart-beta
+    title "Q5: Array Size vs Memory Usage"
+    x-axis ["5", "10", "15", "100", "1000"]
+    y-axis "Memory (KB)" 10650 --> 10700
+    line [10676, 10676, 10676, 10676, 10676]
 ```
 
 ### Complexity Analysis
@@ -713,4 +734,4 @@ Space = O(log n) average recursion depth, O(n) worst case, plus O(n) for the inp
 
 ## Final Notes
 
-The five C files in this folder already print the runtime CPU measurement and maximum resident set size. If you want the README to show real measured values instead of the comparison-count proxy, run each program with the same six input sizes and replace the tables with your observed `clock()` and `getrusage()` results.
+The five C files in this folder already print runtime CPU measurement and maximum resident set size. This README now includes measured values for Q1, Q3, Q4, and Q5. You can update Q2 in the same way by running its program with the same array sizes and replacing that table with observed `clock()` and `getrusage()` results.
