@@ -248,14 +248,24 @@ Memory Usage (Max Resident Set Size): 10192 KB
 | 100,000 | 17 | 0.005000 | 13000 | O(1) |
 
 
-### Graph: Time Versus Size
+### Graph 1: Array Size Versus CPU Time
 
 ```mermaid
 xychart-beta
-    title "Binary Search Performance (Comparisons vs n)"
-    x-axis ["1", "10", "100", "1000", "10000", "100000"]
-    y-axis "Comparisons (log₂ n approx)" 0 --> 20
-    line [1, 4, 7, 10, 14, 17]
+    title "Binary Search: Array Size vs CPU Time"
+    x-axis ["5", "10", "15", "100", "1000", "10000", "100000"]
+    y-axis "CPU Time (seconds)" 0 --> 0.0052
+    line [0.000012, 0.000018, 0.000025, 0.000120, 0.001200, 0.002500, 0.005000]
+```
+
+### Graph 2: Array Size Versus Memory Usage
+
+```mermaid
+xychart-beta
+    title "Binary Search: Array Size vs Memory Usage"
+    x-axis ["5", "10", "15", "100", "1000", "10000", "100000"]
+    y-axis "Memory Usage (KB)" 10000 --> 13200
+    line [10020, 10040, 10060, 10120, 10500, 11000, 13000]
 ```
 
 ### Complexity Analysis
