@@ -39,10 +39,27 @@ int main() {
 
     int *arr = (int *)malloc(n * sizeof(int));
 
-    printf("Enter elements:\n");
-    for (int i = 0; i < n; i++)
-        scanf("%d", &arr[i]);
-    
+    if (n <= 10) {
+        printf("Enter elements:\n");
+        for (int i = 0; i < n; i++) {
+            scanf("%d", &arr[i]);
+        }
+    } else {
+        srand(time(0));
+
+        // first random number
+        arr[0] = rand() % 10;
+
+        // generate sorted numbers directly
+        for (int i = 1; i < n; i++) {
+            arr[i] = arr[i - 1] + (rand() % 10); // always increasing
+        }
+        printf("Generated sorted elements:\n");
+        for (int i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
+    }
     // ⏱ Start CPU time
     clock_t start = clock();
 
