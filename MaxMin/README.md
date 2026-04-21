@@ -1,10 +1,3 @@
----
-
-# 🔥 Add This To Your README
-
-````md
----
-
 ## Question 6: Maximum and Minimum (Iterative Approach)
 
 ### Problem Statement
