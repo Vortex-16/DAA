@@ -1,11 +1,3 @@
-Perfect — I see the structure you used in your README .
-I’ll create a **matching section** for:
-
-* ✅ Iterative Max–Min
-* ✅ Divide & Conquer Max–Min
-
-Same style, same quality — ready to paste.
-
 ---
 
 # 🔥 Add This To Your README
