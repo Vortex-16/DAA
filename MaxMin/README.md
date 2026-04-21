@@ -189,5 +189,3 @@ O(log n) recursion stack + O(n) input array
 Divide and Conquer does the same work asymptotically but reduces the number of comparisons, making it more efficient in practice for large inputs.
 
 ```
-
----
