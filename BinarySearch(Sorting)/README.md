@@ -1,6 +1,6 @@
 # Binary Search With Sorting Techniques
 
-This folder contains five C programs that solve binary search problems after different preprocessing steps. Each program already measures CPU time with `clock()` and reports memory usage with `getrusage()`. For a report that can be read consistently on any machine, the tables below use a comparison-count based CPU proxy, while the linked C files provide the actual runtime instrumentation.
+This folder contains six C programs. Five programs solve binary search problems after different preprocessing steps, and one program demonstrates heap sort. Each program measures CPU time with `clock()` and reports memory usage with `getrusage()`.
 
 Program list:
 
@@ -9,6 +9,7 @@ Program list:
 3. [Binary_Search(Merge Sort)).c](Binary_Search%28Merge%20Sort%29%29.c) - Merge sort, then binary search.
 4. [Binary_Search(Quick-Sort-Pivot(high)).c](Binary_Search%28Quick-Sort-Pivot%28high%29%29.c) - Quick sort with the last element as pivot, then binary search.
 5. [Binary_Search(Quick-Sort-Pivot(Low)).c](Binary_Search%28Quick-Sort-Pivot%28Low%29%29.c) - Quick sort with the first element as pivot, then binary search.
+6. [HeapSort.c](HeapSort.c) - Heap sort on an input array.
 
 ## Common Input And Output Pattern
 
@@ -732,6 +733,74 @@ Time = Theta(n log n) average/best, Theta(n^2) worst
 Space = O(log n) average recursion depth, O(n) worst case, plus O(n) for the input array
 ```
 
+## Question 6: Heap Sort
+
+### Problem Statement
+
+Write a program in C to sort an array using heap sort. Also display CPU time and memory usage.
+
+### Algorithm In Pseudocode
+
+```text
+read n
+read array[0..n-1]
+
+build a max heap from the array
+
+for i from n-1 down to 1
+    swap array[0] and array[i]
+    heapify the reduced heap (size i) from index 0
+
+print sorted array
+print CPU time and memory usage
+```
+
+### Code
+
+The implementation is in [HeapSort.c](HeapSort.c).
+
+### Build And Run
+
+```bash
+gcc HeapSort.c -o heapsort
+./heapsort
+```
+
+### Sample Input And Output
+
+```text
+Enter number of elements: 6
+Enter elements:
+12 3 19 5 8 1
+Sorted elements:
+1 3 5 8 12 19
+CPU Time Used: 0.000003 seconds
+Memory Usage (Max Resident Set Size): 10080 KB
+```
+
+### Complexity Analysis
+
+Heap construction:
+
+```text
+O(n)
+```
+
+Repeated extraction and heapify:
+
+```text
+O(n log n)
+```
+
+Overall:
+
+```text
+Best case   = Theta(n log n)
+Average case = Theta(n log n)
+Worst case  = Theta(n log n)
+Space       = O(1) auxiliary (in-place), plus O(n) input array
+```
+
 ## Final Notes
 
-The five C files in this folder already print runtime CPU measurement and maximum resident set size. This README now includes measured values for Q1, Q3, Q4, and Q5. You can update Q2 in the same way by running its program with the same array sizes and replacing that table with observed `clock()` and `getrusage()` results.
+All six C files in this folder print runtime CPU measurement and maximum resident set size. You can update each table with your own observed values by running the corresponding program for the same input sizes.

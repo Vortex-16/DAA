@@ -1,10 +1,17 @@
-## Question 6: Maximum and Minimum (Iterative Approach)
+# Max-Min In C (Iterative And Divide & Conquer)
+
+This folder contains two C programs for finding the minimum and maximum elements in an array, with CPU time and memory usage reporting.
+
+Program list:
+
+1. [MaxMin_Ussing_Ittreative.c](MaxMin_Ussing_Ittreative.c) - Iterative approach.
+2. [MaxMin_Ussing_Dvide&Conquer.c](MaxMin_Ussing_Dvide&Conquer.c) - Divide and conquer approach.
+
+## 1) Maximum And Minimum Using Iterative Approach
 
 ### Problem Statement
 
-Write a program in C to find the maximum and minimum elements in an array using an iterative approach. Also display CPU time and memory usage.
-
----
+Find the maximum and minimum elements in an array using a single scan. Print CPU time and memory usage.
 
 ### Algorithm In Pseudocode
 
@@ -12,180 +19,102 @@ Write a program in C to find the maximum and minimum elements in an array using 
 read n
 read array[0..n-1]
 
-max ← array[0]
-min ← array[0]
+max <- array[0]
+min <- array[0]
 
-for i = 1 to n-1
+for i from 1 to n-1
     if array[i] > max
-        max ← array[i]
+        max <- array[i]
     if array[i] < min
-        min ← array[i]
+        min <- array[i]
 
 print max and min
 print CPU time and memory usage
-````
-
----
-
-### CPU Time And Space Usage
-
-| Array Size (n) | CPU Time (seconds) | Memory Usage (KB) |
-| -------------: | -----------------: | ----------------: |
-|              1 |           0.000005 |              3052 |
-|             10 |           0.000005 |              3052 |
-|            100 |           0.000002 |              3052 |
-|           1000 |           0.000014 |              3082 |
-|          10000 |           0.000093 |              3052 |
-
----
-
-### Graph: Array Size Versus CPU Time
-
-```mermaid
-xychart-beta
-    title "Iterative Max-Min: Array Size vs CPU Time"
-    x-axis ["1", "10", "100", "1000", "10000"]
-    y-axis "CPU Time (seconds)" 0 --> 0.0001
-    line [0.000005, 0.000005, 0.000002, 0.000014, 0.000093]
 ```
 
----
+### Build And Run
 
-### Complexity Analysis
+```bash
+gcc MaxMin_Ussing_Ittreative.c -o maxmin_iterative
+./maxmin_iterative
+```
 
-Recurrence:
+### Sample Input And Output
 
 ```text
-T(n) = T(n-1) + 2
-T(1) = 0
+Enter the number of elements: 6
+Enter the elements:
+12 -3 7 19 0 5
+Maximum element: 19
+Minimum element: -3
+CPU Time Used: 0.000002 seconds
+Memory Usage (Max Resident Set Size): 3052 KB
 ```
 
-Solution:
+### Complexity
 
 ```text
-T(n) = 2(n-1)
+Comparisons: 2n - 2
+Time: Theta(n)
+Space: O(1) auxiliary, plus O(n) input array
 ```
 
-Final Complexity:
-
-```text
-Best case   = Ω(n)
-Average case = Θ(n)
-Worst case  = O(n)
-```
-
-Space Complexity:
-
-```text
-O(1) auxiliary, plus O(n) for input array
-```
-
----
-
-## Question 7: Maximum and Minimum (Divide and Conquer)
+## 2) Maximum And Minimum Using Divide And Conquer
 
 ### Problem Statement
 
-Write a program in C to find the maximum and minimum elements using the divide and conquer approach. Also display CPU time and memory usage.
-
----
+Find the maximum and minimum elements by recursively splitting the array into halves. Print CPU time and memory usage.
 
 ### Algorithm In Pseudocode
 
 ```text
-function MaxMin(arr, low, high)
-
+MaxMin(arr, low, high):
     if low == high
         return (arr[low], arr[low])
 
     if high == low + 1
-        compare and return min and max
+        return ordered pair of (min, max)
 
-    mid = (low + high)/2
+    mid <- (low + high) / 2
+    (min1, max1) <- MaxMin(left half)
+    (min2, max2) <- MaxMin(right half)
 
-    (min1, max1) = MaxMin(left half)
-    (min2, max2) = MaxMin(right half)
-
-    final_min = min(min1, min2)
-    final_max = max(max1, max2)
-
-    return (final_min, final_max)
+    return (min(min1, min2), max(max1, max2))
 ```
 
----
+### Build And Run
 
-### CPU Time And Space Usage
-
-| Array Size (n) | CPU Time (seconds) | Memory Usage (KB) |
-| -------------: | -----------------: | ----------------: |
-|              1 |           0.000006 |              3052 |
-|             10 |           0.000007 |              3052 |
-|            100 |           0.000010 |              3052 |
-|           1000 |           0.000050 |              3082 |
-|          10000 |           0.000210 |              3100 |
-
----
-
-### Graph: Array Size Versus CPU Time
-
-```mermaid
-xychart-beta
-    title "Divide & Conquer Max-Min: Array Size vs CPU Time"
-    x-axis ["1", "10", "100", "1000", "10000"]
-    y-axis "CPU Time (seconds)" 0 --> 0.00025
-    line [0.000006, 0.000007, 0.000010, 0.000050, 0.000210]
+```bash
+gcc MaxMin_Ussing_Dvide\&Conquer.c -o maxmin_divide_conquer
+./maxmin_divide_conquer
 ```
 
----
-
-### Complexity Analysis
-
-Recurrence:
+### Sample Input And Output
 
 ```text
-T(n) = 2T(n/2) + 2
-T(1) = 0
+Enter number of elements: 6
+Enter elements:
+12 -3 7 19 0 5
+Minimum element: -3
+Maximum element: 19
+CPU Time Used: 0.000004 seconds
+Memory Usage (Max Resident Set Size): 3052 KB
 ```
 
-Solution:
+### Complexity
 
 ```text
-T(n) = Θ(n)
+Recurrence: T(n) = 2T(n/2) + O(1)
+Comparisons: about 3n/2 - 2
+Time: Theta(n)
+Space: O(log n) recursion stack, plus O(n) input array
 ```
 
-Comparisons:
+## Comparison Summary
 
-```text
-≈ 3n/2 - 2
-```
+| Method | Comparisons | Time Complexity | Extra Space |
+|---|---:|---:|---:|
+| Iterative | 2n - 2 | Theta(n) | O(1) |
+| Divide and Conquer | around 3n/2 - 2 | Theta(n) | O(log n) |
 
-Time Complexity:
-
-```text
-Best case   = Ω(n)
-Average case = Θ(n)
-Worst case  = O(n)
-```
-
-Space Complexity:
-
-```text
-O(log n) recursion stack + O(n) input array
-```
-
----
-
-## Final Comparison
-
-| Method           | Comparisons | Time Complexity | Space    |
-| ---------------- | ----------- | --------------- | -------- |
-| Iterative        | 2n - 2      | Θ(n)            | O(1)     |
-| Divide & Conquer | ~1.5n       | Θ(n)            | O(log n) |
-
----
-
-## Key Insight
-
-Divide and Conquer does the same work asymptotically but reduces the number of comparisons, making it more efficient in practice for large inputs.
-
-```
+Both methods are linear in time. Divide and conquer usually performs fewer comparisons, while the iterative approach uses constant auxiliary space.
